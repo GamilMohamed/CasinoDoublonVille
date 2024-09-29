@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @font-face {
+  font-family: "Casino";
+  src: url("/src/assets/allcasino.ttf");
+}
+
+@font-face {
   font-family: "Pokemon";
   src: url("/src/assets/pokemon-dp-pro.ttf");
 }
@@ -14,8 +19,6 @@
 * {
   font-family: "MyFont", sans-serif;
 }
-
-
 
 /* * {
   font-family: "Pokemon", sans-serif;
