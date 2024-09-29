@@ -5,7 +5,11 @@ import Voltorbe from "./assets/voltorb2.svg";
 import Voltorbe2 from "./assets/voltorb.svg";
 import Explosion from "./assets/explosion2.gif";
 import GameContext from "./GameContext";
+import React from "react";
 
+const Test = styled.img<{ $turned: boolean }>`
+  transform-style: preserve-3d;
+`;
 // Card wrapper for 3D flip
 const CardWrapper = styled.div`
   width: 78px;
@@ -22,8 +26,7 @@ const CardInner = styled.div<{ $turned: boolean }>`
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.2s;
-  transform: ${(props) =>
-    props.$turned ? "rotateY(180deg)" : "rotateY(0deg)"};
+  transform: ${(props) => props.$turned ? "rotateY(180deg)" : "rotateY(0deg)"};
 `;
 
 // Front and back of the card
@@ -97,10 +100,12 @@ interface CardProps {
 
 const Note = styled.p<{ $visible: boolean }>`
   color: #f8b830;
-  visibility: ${(props) => (props.$visible ? "visible" : "hidden")};
+  display: block;
+  display: ${(props) => (props.$visible ? "block" : "none")};
 `;
 
 export default function Card({ row, col }: CardProps) {
+   const ref = React.useRef<HTMLDivElement>(null);
   const {
     correct,
     memo,
@@ -118,11 +123,42 @@ export default function Card({ row, col }: CardProps) {
   const [notes, setNotes] = useState([0, 0, 0, 0]);
   const [gifSrc, setGifSrc] = useState(Explosion);
 
-
   const triggerExplosion = () => {
     setShowExplosion(true);
+    
     setGifSrc(`${Explosion}?t=${Date.now()}`);
+
   };
+
+  useEffect(() => {
+    if (turned) {
+      // alert("turned" + ref.current?.classList);
+      // ref.current?.classList.add("myexplosion");
+      ref.current?.animate(
+        [
+          // Keyframes corresponding to the CSS keyframes
+          { 
+            transform: "scale(1) rotateX(0deg)", 
+            filter: "hue-rotate(30deg)" 
+          },
+          { 
+            transform: "scale(1.6) rotateX(-30deg)", 
+            filter: "hue-rotate(30deg)" 
+          },
+          { 
+            transform: "scale(1) rotateX(0deg)", 
+            filter: "hue-rotate(30deg)" 
+          }
+        ],
+        {
+          // Timing options
+          duration: 1000, // Match your CSS animation duration
+          iterations: 1   // Number of times the animation should repeat
+        }
+      );
+    //   // alert("turned");
+    }
+  }, [turned]);
 
   useEffect(() => {
     if (gameOver) {
@@ -132,6 +168,7 @@ export default function Card({ row, col }: CardProps) {
   }, [gameOver]);
 
   const handleClick = (e: React.MouseEvent) => {
+    setTurned(true);
     if (memo === true) {
       const updatedNotes = [...notes];
       updatedNotes[selected] = updatedNotes[selected] === 0 ? 1 : 0;
@@ -139,8 +176,6 @@ export default function Card({ row, col }: CardProps) {
       console.log(e.currentTarget, selected, updatedNotes);
       return;
     }
-
-    setTurned(true);
     if (correct[row][col] === 0) {
       const rect = e.currentTarget.getBoundingClientRect(); // Get the card position
       setExplosionPosition({
@@ -166,13 +201,14 @@ export default function Card({ row, col }: CardProps) {
               <Container $color="blue">
                 <Note
                   $visible={notes[0] == 1}
-                  className="absolute top-1 left-1"
+                  className=" bg-blue-200"
                 >
                   <img
-                    className="w-[100%]"
+                    // className="w-[100%]"
+                    className="absolute top-1 left-1"
                     src={Voltorbe2}
                     alt="voltorbe"
-                    width={"70%"}
+                    width={"20%"}
                   />
                 </Note>
                 <Note
@@ -196,9 +232,19 @@ export default function Card({ row, col }: CardProps) {
               </Container>
             </div>
           </Bloc>
-          <Turned>
+          <Turned className="cube-wrap">
             {correct[row][col] === 0 ? (
-              <img width={"70%"} src={Voltorbe} alt="voltorbe" />
+
+<Test
+ref={ref}
+// className="myexplosion"
+
+              $turned={turned}
+              width={"70%"} src={Voltorbe} alt="voltorbe" />
+
+              // <img
+              // className={turned ? "myanimation" : ""}
+              // width={"70%"} src={Voltorbe} alt="voltorbe" />
             ) : (
               correct[row][col]
             )}

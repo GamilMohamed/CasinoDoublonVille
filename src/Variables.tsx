@@ -47,7 +47,7 @@ export const OpenIt = styled.div<{ $display: boolean }>`
   border: 3px solid #188060;
 `;
 
-export const Leave = styled.div`
+export const Leave = styled.div<{ $display: string }>`
   width: 90%;
   box-shadow: 0px 5px #404040, 0px -5px #404040, 5px 0px #404040,
     -5px 0px #404040, 0px 0px 5px #404040;
@@ -67,6 +67,8 @@ export const Leave = styled.div`
     rgba(48, 104, 224, 1) 69%,
     rgba(48, 104, 224, 1) 74%
   );
+  transform: ${(props) => props.$display == "none" && "scale(1.5)"};
+  transition: transform 0.5s ease-in-out;
 `;
 
 export const Bar = styled.div<{ $row: number; $col: number; $color: string }>`

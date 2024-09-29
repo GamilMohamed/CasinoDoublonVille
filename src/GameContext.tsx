@@ -7,7 +7,7 @@ interface GameContextProps {
   selected: number;
   setSelected: React.Dispatch<React.SetStateAction<number>>;
   bomb: number[][];
-  correct: number[][];
+  correct: number[][][];
   allTurned: boolean;
   setAllTurned: React.Dispatch<React.SetStateAction<boolean>>;
   gameOver: boolean;
@@ -23,6 +23,8 @@ export const GameContextProvider: React.FC<{ children: React.ReactNode }> = ({
   const [selected, setSelected] = useState<number>(0);
   const [allTurned, setAllTurned] = useState<boolean>(false);
   const [gameOver, setGameOver] = useState<boolean>(false);
+
+  const [score, setScore] = useState<number>(0);
 
   useEffect(() => {
     if (gameOver) {
@@ -45,13 +47,16 @@ export const GameContextProvider: React.FC<{ children: React.ReactNode }> = ({
   ];
 
   const correct = [
-    [0, 1, 2, 0, 1, 4],
-    [1, 0, 1, 1, 3, 6],
-    [1, 0, 0, 1, 0, 2],
-    [1, 1, 1, 2, 1, 6],
-    [2, 1, 2, 2, 0, 7],
-    [5, 3, 6, 6, 5, 0],
+    [1, 0, 3, 3, 0, [7, 2]],
+    [1, 1, 0, 3, 3, [8, 1]],
+    [0, 0, 0, 1, 0, [1, 4]],
+    [0, 1, 0, 1, 1, [3, 2]],
+    [1, 0, 0, 1, 0, [2, 3]],
+    [[3, 2], [2, 3], [3, 4], [9, 0], [4, 3], 1],
+    
+    
   ];
+
   return (
     <GameContext.Provider
       value={{
@@ -70,7 +75,7 @@ export const GameContextProvider: React.FC<{ children: React.ReactNode }> = ({
       <>
         {gameOver && (
           <div
-            className="z-[10000]  bg-red-700 h-[100vh] w-[100vw] overflow-visible absolute top-0 left-0 opacity-40 flex justify-center items-center"
+            className="z-[10000]  bg-red-400 h-[100vh] w-[100vw] overflow-visible absolute top-0 left-0 opacity-0 flex justify-center items-center"
             onClick={handleGame}
           >
           </div>
