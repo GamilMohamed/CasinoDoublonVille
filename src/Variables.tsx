@@ -83,7 +83,8 @@ export const Bar = styled.div<{ $row: number; $col: number; $color: string }>`
 `;
 
 export const Bloc = styled.div`
-  z-index: 10;
+  position: relative;
+  z-index: 5;
   width: 78px;
   height: 78px;
   display: flex;
@@ -154,6 +155,6 @@ export const Last = styled.div<{ $color: string }>`
   background-size: 50px 50px;
   background-position: 0 0, 25px 25px;
   outline: 3px solid white;
-  z-index: 10;
+  z-index: 5;
   background-color: ${(props) => props.$color};
 `;
