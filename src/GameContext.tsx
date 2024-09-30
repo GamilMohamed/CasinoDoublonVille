@@ -24,7 +24,7 @@ export const GameContextProvider: React.FC<{ children: React.ReactNode }> = ({
   const [allTurned, setAllTurned] = useState<boolean>(false);
   const [gameOver, setGameOver] = useState<boolean>(false);
 
-  const [score, setScore] = useState<number>(0);
+  // const [score, setScore] = useState<number>(0);
 
   useEffect(() => {
     if (gameOver) {

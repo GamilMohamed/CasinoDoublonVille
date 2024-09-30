@@ -39,7 +39,7 @@
 
 @font-face {
   font-family: "Casino";
-  src: url("/src/assets/allcasino.ttf");
+  src: url("/src/assets/allcasino.woff2") format("woff2");
 }
 
 @font-face {

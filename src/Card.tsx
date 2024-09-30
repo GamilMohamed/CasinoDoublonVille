@@ -131,7 +131,7 @@ export default function Card({ row, col }: CardProps) {
   };
 
   useEffect(() => {
-    if (turned) {
+    if (!memo && turned) {
       // alert("turned" + ref.current?.classList);
       // ref.current?.classList.add("myexplosion");
       ref.current?.animate(
@@ -168,14 +168,14 @@ export default function Card({ row, col }: CardProps) {
   }, [gameOver]);
 
   const handleClick = (e: React.MouseEvent) => {
-    setTurned(true);
-    if (memo === true) {
-      const updatedNotes = [...notes];
-      updatedNotes[selected] = updatedNotes[selected] === 0 ? 1 : 0;
-      setNotes(updatedNotes);
-      console.log(e.currentTarget, selected, updatedNotes);
-      return;
-    }
+	  if (memo === true) {
+		  const updatedNotes = [...notes];
+		  updatedNotes[selected] = updatedNotes[selected] === 0 ? 1 : 0;
+		  setNotes(updatedNotes);
+		  console.log(e.currentTarget, selected, updatedNotes);
+		  return;
+		}
+		setTurned(true);
     if (correct[row][col] === 0) {
       const rect = e.currentTarget.getBoundingClientRect(); // Get the card position
       setExplosionPosition({

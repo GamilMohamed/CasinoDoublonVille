@@ -11,7 +11,7 @@ import Card from "./Card";
 
 function App() {
   const color = ["#e07050", "#40a840", "#e8a038", "#3090f8", "#c060e0"];
-  const { correct, bomb } = useContext(GameContext);
+  const { correct } = useContext(GameContext);
   return (
     <>
       <div className="bg-[#28a068]  h-[100vh] w-[100vw] flex justify-center items-center relative">
@@ -49,8 +49,10 @@ function App() {
                     width={"40px"}
                   />
                   <p className="text-2xl text-myblack">
+                    <>
                     {correct[i][j][1]}
                     {console.log("i: ", i, "j: ", j)}
+                    </>
                   </p>
                 </div>
               </Last>

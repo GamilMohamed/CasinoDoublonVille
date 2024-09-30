@@ -12,11 +12,12 @@ export const Memo = styled.div<{ $display: string }>`
 
 export const MyButton = styled.button`
   display: flex;
-  align-items: end;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column;
   text-align: center;
   padding-bottom: 10px;
   line-height: 2;
-  background-color: #28a068;
   cursor: pointer;
   border-radius: 3px 3px 0 0;
   width: 100%;
@@ -45,7 +46,7 @@ export const OpenIt = styled.div<{ $display: boolean }>`
   border-radius: 5px;
   outline: 3px solid #404040;
   border: 3px solid #188060;
-`;
+  `;
 
 export const Leave = styled.div<{ $display: string }>`
   width: 90%;
@@ -141,7 +142,6 @@ export const Box = styled.div<{ $selected: boolean }>`
 export const Title = styled.h1`
   font-size: 1.5rem;
   font-family: "Casino";
-  color: #f8b830;
 `;
 
 export const Last = styled.div<{ $color: string }>`
