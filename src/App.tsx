@@ -8,12 +8,15 @@ import OpenTSX from "./OpenMemo";
 import { useContext } from "react";
 import GameContext from "./GameContext";
 import Card from "./Card";
+import Game from "./Game";
 
 function App() {
   const color = ["#e07050", "#40a840", "#e8a038", "#3090f8", "#c060e0"];
-  const { correct } = useContext(GameContext);
+  const { tab } = useContext(GameContext);
   return (
     <>
+      {/* <Game/> */}
+
       <div className="bg-[#28a068]  h-[100vh] w-[100vw] flex justify-center items-center relative">
         <div className="h-[600px] w-[800px] flex ">
         <div className="h-[600px] w-[600px] relative overflow-visible">
@@ -39,19 +42,26 @@ function App() {
           {(i == 5 || j == 5) && !(i == 5 && j == 5)  ? (
             <>
               <Last $color={color[j == 5 ? i : i == 5 ? j : i]}>
-                <p className="text-myblack white w-[105%] text-end pr-1 text-lg m-[-1px] border-white border-b-4">
-                  {correct[i][j][0].toString().padStart(2, "0")}
+                <p className="text-myblack white w-[105%] text-end pr-1 text-xl m-[-1px] border-white border-b-4">
+                  {/* {tab[i][j][0].toString().padStart(2, "0")} */}
+                  {tab[i][j][0]}
                 </p>
-                <div className="flex justify-around items-center w-full h-[80%]">
+                <div className="w-full flex justify-around items-center  h-[80%]">
+                  
+                  
+                {/* <p className="w-[50%]  bg-purple-700 text-center text-myblack">
+                    <>
+                    {tab[i][j][1]}
+                    </>
+                  </p> */}
                   <img
+                  className="w-[50%] bg-blue-50"
                     src={Voltorbe2}
                     alt="voltorbe"
-                    width={"40px"}
                   />
-                  <p className="text-2xl text-myblack">
+                  <p className="w-[30%] text-2xl  bg-red-200 text-myblack">
                     <>
-                    {correct[i][j][1]}
-                    {console.log("i: ", i, "j: ", j)}
+                    {tab[i][j][1]}
                     </>
                   </p>
                 </div>

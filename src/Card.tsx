@@ -107,7 +107,7 @@ const Note = styled.p<{ $visible: boolean }>`
 export default function Card({ row, col }: CardProps) {
    const ref = React.useRef<HTMLDivElement>(null);
   const {
-    correct,
+    tab,
     memo,
     selected,
     allTurned,
@@ -176,7 +176,7 @@ export default function Card({ row, col }: CardProps) {
 		  return;
 		}
 		setTurned(true);
-    if (correct[row][col] === 0) {
+    if (tab[row][col] === 0) {
       const rect = e.currentTarget.getBoundingClientRect(); // Get the card position
       setExplosionPosition({
         top: rect.top + window.scrollY,
@@ -233,7 +233,7 @@ export default function Card({ row, col }: CardProps) {
             </div>
           </Bloc>
           <Turned className="cube-wrap">
-            {correct[row][col] === 0 ? (
+            {tab[row][col] === 0 ? (
 
 <Test
 ref={ref}
@@ -246,7 +246,7 @@ ref={ref}
               // className={turned ? "myanimation" : ""}
               // width={"70%"} src={Voltorbe} alt="voltorbe" />
             ) : (
-              correct[row][col]
+              tab[row][col]
             )}
           </Turned>
         </CardInner>

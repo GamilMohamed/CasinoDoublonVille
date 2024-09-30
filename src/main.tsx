@@ -5,9 +5,9 @@ import { GameContextProvider } from './GameContext'
 import './index.css'
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
+  // <StrictMode>
     <GameContextProvider>
     <App />
-    </GameContextProvider>
-  </StrictMode>,
+    </GameContextProvider>,
+  {/* </StrictMode>, */}
 )

@@ -25,7 +25,7 @@ export default function OpenTSX() {
 				</> ||
 				<>
 				{memo ? <img src={Fermer} alt="fermer" width={"90%"} /> : <img
-					style={{ marginBottom: "10px", backgroundColor: "red" }}
+					style={{ marginBottom: "10px"}}
 					src={Ouvrir} alt="ouvrir" width={"90%"} />}
 					<img src={Memo} alt="memo" width={"70%"} />
 					</>
