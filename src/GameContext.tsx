@@ -39,6 +39,11 @@ export const GameContextProvider: React.FC<{ children: React.ReactNode }> = ({
     const [linebomb, setLinebomb] = useState<number[]>(() => Array(nblines).fill(0));
     const [colbomb, setColbomb] = useState<number[]>(() => Array(nbcolumns).fill(0));
   
+  useEffect(() => {
+    loadGame(); 
+  }
+  , []);
+
     // Helper function to get random integer between min (inclusive) and max (inclusive)
     const getRandomInt = (min: number, max: number) => {
       return Math.floor(Math.random() * (max - min + 1)) + min;

@@ -46,7 +46,7 @@ export const OpenIt = styled.div<{ $display: boolean }>`
   border-radius: 5px;
   outline: 3px solid #404040;
   border: 3px solid #188060;
-  `;
+`;
 
 export const Leave = styled.div<{ $display: string }>`
   width: 90%;
@@ -145,17 +145,13 @@ export const Title = styled.h1`
 `;
 
 export const Last = styled.div<{ $color: string }>`
-  position: relative;
+  // position: relative;
   flex-direction: column;
-
   width: 78px;
   height: 78px;
-  background-color: white;
   display: flex;
   align-items: center;
   border-radius: 5%;
-  background-size: 50px 50px;
-  background-position: 0 0, 25px 25px;
   outline: 3px solid white;
   z-index: 5;
   background-color: ${(props) => props.$color};
